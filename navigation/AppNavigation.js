@@ -1,14 +1,14 @@
 /* @flow */
 
-import { createAppContainer, createStackNavigator } from 'react-navigation';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { createAppContainer, createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+// import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import tabBarIcon from '@components/tabBarIcon';
-import ProfileList from '@scene/containers/ProfileList';
-import FavList from '@scenes/containers/FavList';
-import Login from '@scenes/containers/Login'
+import ProfileList from '@scene/ProfileList';
+import FavList from '@scene/FavList';
+import Login from '@scene/Login'
 
-const MainStack = createMaterialBottomTabNavigator(
+const MainStack = createBottomTabNavigator(
   {
     ProfileList: {
       screen: ProfileList,
@@ -46,6 +46,8 @@ export default createAppContainer(
       },
     },
     {
+      initialRouteName: 'Login',
+      headerMode: 'none',
       mode: 'modal',
       defaultNavigationOptions: {
         gesturesEnabled: false,

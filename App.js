@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, {Fragment} from 'react';
+import React, {Fragment, Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -26,64 +26,56 @@ import {
 
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
+import { ApolloProvider } from 'react-apollo';
+import { createHttpLink } from 'apollo-link-http'
+import { onError } from 'apollo-link-error';
+import { ApolloLink, concat } from 'apollo-link';
+// import apolloLogger from 'apollo-link-logger';
+import AppNavigator from '@router/AppNavigation';
 
-const cache = new InMemoryCache();
-const link = new HttpLink({
-  uri: 'http://localhost:4000/'
-})
+class App extends Component {
+  createClient() {
+    const httpLink = createHttpLink({ uri: 'https://api.github.com/graphql'})
 
-const client = new ApolloClient({
-  cache,
-  link
-})
+    // handle network error
+    const errorLink = onError(({ networkError }) => {
+        if (networkError.statusCode === 401) {
+          console.log(networkError)
+        }
+      // let errorMessage = networkError.statusCode === 401 ? 'Network error 104, handled' : 'link sucess'
+      // console.log(errorMessage, networkError)
+    })
 
-const App = () => {
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
-  );
+    // apply widdleware to add access token to request
+    let middlewareLink =  new ApolloLink((operation, forward) => {
+      operation.setContext({
+        headers: {
+        authorization : 'Bearer 323a3da206d5e6e7c5819883dc2e030526375d96'
+        }
+      })
+      return forward(operation)
+    })
+    // ApolloLink.from([
+    //   apolloLogger
+    // ])
+    const link = concat(middlewareLink, httpLink)
+
+    // Initialize Apollo Client with URL to our server
+    return new ApolloClient({
+    link: link,
+    cache: new InMemoryCache({
+      dataIdFromObject: o => o.id,
+    }),
+    connectToDevTools: true
+    })
+  }
+  render() {
+    return (
+      <ApolloProvider client={this.createClient()}>
+          <AppNavigator />
+      </ApolloProvider>
+    );
+  }
 };
 
 const styles = StyleSheet.create({

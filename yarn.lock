@@ -1172,6 +1172,14 @@ apollo-client@^2.6.4:
     tslib "^1.9.3"
     zen-observable "^0.8.0"
 
+apollo-link-error@^1.1.11:
+  version "1.1.11"
+  resolved "http://nexus.turtlemint.com/repository/npm-group/apollo-link-error/-/apollo-link-error-1.1.11.tgz#7cd363179616fb90da7866cee85cb00ee45d2f3b"
+  dependencies:
+    apollo-link "^1.2.12"
+    apollo-link-http-common "^0.2.14"
+    tslib "^1.9.3"
+
 apollo-link-http-common@^0.2.14:
   version "0.2.14"
   resolved "http://nexus.turtlemint.com/repository/npm-group/apollo-link-http-common/-/apollo-link-http-common-0.2.14.tgz#d3a195c12e00f4e311c417f121181dcc31f7d0c8"
@@ -1187,6 +1195,10 @@ apollo-link-http@^1.5.15:
     apollo-link "^1.2.12"
     apollo-link-http-common "^0.2.14"
     tslib "^1.9.3"
+
+apollo-link-logger@^1.2.3:
+  version "1.2.3"
+  resolved "http://nexus.turtlemint.com/repository/npm-group/apollo-link-logger/-/apollo-link-logger-1.2.3.tgz#1f3e6f7849ce7a7e3aa822141fe062cfa278b1e1"
 
 apollo-link@^1.0.0, apollo-link@^1.2.12:
   version "1.2.12"
@@ -2628,6 +2640,12 @@ graphql-tag@^2.10.1:
   version "2.10.1"
   resolved "http://nexus.turtlemint.com/repository/npm-group/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
 
+graphql@^14.4.2:
+  version "14.4.2"
+  resolved "http://nexus.turtlemint.com/repository/npm-group/graphql/-/graphql-14.4.2.tgz#553a7d546d524663eda49ed6df77577be3203ae3"
+  dependencies:
+    iterall "^1.2.2"
+
 growly@^1.3.0:
   version "1.3.0"
   resolved "http://nexus.turtlemint.com/repository/npm-group/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
@@ -3075,6 +3093,10 @@ istanbul-reports@^2.2.6:
   resolved "http://nexus.turtlemint.com/repository/npm-group/istanbul-reports/-/istanbul-reports-2.2.6.tgz#7b4f2660d82b29303a8fe6091f8ca4bf058da1af"
   dependencies:
     handlebars "^4.1.2"
+
+iterall@^1.2.2:
+  version "1.2.2"
+  resolved "http://nexus.turtlemint.com/repository/npm-group/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
 
 jest-changed-files@^24.9.0:
   version "24.9.0"
@@ -3637,7 +3659,7 @@ lodash.unescape@4.0.1:
   version "4.0.1"
   resolved "http://nexus.turtlemint.com/repository/npm-group/lodash.unescape/-/lodash.unescape-4.0.1.tgz#bf2249886ce514cda112fae9218cdc065211fc9c"
 
-lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.15"
   resolved "http://nexus.turtlemint.com/repository/npm-group/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
 
@@ -4762,6 +4784,14 @@ react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0, react-native-tab-vie
   resolved "http://nexus.turtlemint.com/repository/npm-group/react-native-tab-view/-/react-native-tab-view-1.4.1.tgz#f113cd87485808f0c991abec937f70fa380478b9"
   dependencies:
     prop-types "^15.6.1"
+
+react-native-vector-icons@^6.6.0:
+  version "6.6.0"
+  resolved "http://nexus.turtlemint.com/repository/npm-group/react-native-vector-icons/-/react-native-vector-icons-6.6.0.tgz#66cf004918eb05d90778d64bd42077c1800d481b"
+  dependencies:
+    lodash "^4.0.0"
+    prop-types "^15.6.2"
+    yargs "^13.2.2"
 
 react-native@0.60.5:
   version "0.60.5"
@@ -6074,7 +6104,7 @@ yargs@^12.0.5:
     y18n "^3.2.1 || ^4.0.0"
     yargs-parser "^11.1.1"
 
-yargs@^13.3.0:
+yargs@^13.2.2, yargs@^13.3.0:
   version "13.3.0"
   resolved "http://nexus.turtlemint.com/repository/npm-group/yargs/-/yargs-13.3.0.tgz#4c657a55e07e5f2cf947f8a366567c04a0dedc83"
   dependencies:
