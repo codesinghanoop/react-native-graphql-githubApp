@@ -50,7 +50,7 @@ class App extends Component {
     let middlewareLink =  new ApolloLink((operation, forward) => {
       operation.setContext({
         headers: {
-        authorization : 'Bearer 323a3da206d5e6e7c5819883dc2e030526375d96'
+        authorization : 'Bearer GITHUB_KEY'
         }
       })
       return forward(operation)
