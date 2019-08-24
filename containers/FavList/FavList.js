@@ -30,12 +30,12 @@ class FavList extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.isFocused !== this.props.isFocused && this.props.isFocused) {
-
           this.refreshList()
         }
     }
 
     refreshList = async () => {
+        console.log('the list =======', await getItem('favList'))
         this.setState({
             favList: await getItem('favList')
         })

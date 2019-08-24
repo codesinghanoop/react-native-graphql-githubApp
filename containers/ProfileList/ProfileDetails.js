@@ -10,7 +10,7 @@ import { APP_NAME, LOGIN_BUTTON, SIGNUP_BUTTON } from '@constants/Text'
 import { PROFILE_LIST_SCREEN } from '@constants/Screens'
 import Button from '@components/Button'
 import queries from '@config/githubGraphQueries.queries'
-import { setItem, checkExist, getItem, unsetFav, findIndex } from '@utils/localDB'
+import { setItem, checkExist, getItem, unsetFavId, findIndex, unsetFavList } from '@utils/localDB'
 import { USER_FAVORITE, USER_UN_FAVORITE } from '@constants/Icon'
 import styles from './style'
 
@@ -67,13 +67,15 @@ class ProfileDetails extends Component {
 
     addToLocal = async (node) => {
         const { favIds } = this.state
-        await setItem(node, 'favList');
+        
         if(checkExist(favIds, node.node.id)) {
-            console.log('the list is',favIds,node.node.id)
-            await unsetFav(node.node.id, 'favIds')
+            await unsetFavId(node.node.id, 'favIds')
+            await unsetFavList(node.node.id, 'favList')
             const index = findIndex(favIds, node.node.id)
             favIds.splice(index, 1)
         } else {
+            console.log('the list is',favIds,node.node.id)
+            await setItem(node, 'favList');
             await setItem(node.node.id, 'favIds');
             favIds.push(node.node.id)
         }
