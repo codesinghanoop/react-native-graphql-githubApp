@@ -72,7 +72,7 @@ class ProfileDetails extends Component {
             <View style={styles.profileContainer}>
               <ScrollView>
                 <Image style={styles.coverPic} source={{ uri: avatarUrl }} />
-                <Button onPress={() => this.addToLocal(userData)} style={styles.button} text={'FAV'} />
+                <Button onPress={() => this.addToLocal({node: userData})} style={styles.button} text={'FAV'} />
                 <View style={styles.detailsContainer}>
                     {this.getDetailsSection('Name', name)}
                     {this.getDetailsSection('Email', email)}

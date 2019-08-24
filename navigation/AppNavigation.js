@@ -3,7 +3,7 @@ import React from 'react'
 import { createAppContainer, createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 // import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
-import tabBarIcon from '@components/tabBarIcon';
+import tabBarIcon from '@components/Icon';
 import ProfileList from '@scene/ProfileList';
 import FavList from '@scene/FavList';
 import Login from '@scene/Login'

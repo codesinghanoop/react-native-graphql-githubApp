@@ -4,6 +4,8 @@ import {
     Text
 } from 'react-native'
 import { getItem } from '@utils/localDB'
+import FavListComponent from '@components/UserList'
+import styles from './style'
 
 class FavList extends Component {
 
@@ -21,8 +23,29 @@ class FavList extends Component {
         })
     }
 
+    refreshList = async () => {
+        this.setState({
+            favList: JSON.parse(await getItem())
+        })
+    }
+
+    getFakeObj = () => {
+        const { favList } = this.state
+        return {
+            error: false,
+            loading: false,
+            favList,
+            fromFav: true,
+            refetch: this.refreshList
+        }
+    }
+
     render() {
-        return <Text>FavList</Text>
+        return (
+            <View style={styles.container}>
+                <FavListComponent data={this.getFakeObj()} navigate={this.goToProfileDetails}  />
+            </View>
+        )
     }
 }
 

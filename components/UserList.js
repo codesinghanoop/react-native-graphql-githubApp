@@ -3,16 +3,16 @@ import { Text, FlatList, View } from 'react-native';
 import UserListItem from './UserListItem'
 
 const UserList = ({
-    data: { loading, error, search, networkStatus, refetch },
+    data: { loading, error, search, networkStatus, refetch, fromFav, favList },
     navigate,
     searchQuery
 }) => {
-  console.log('the user data is',loading, search, error, searchQuery)
   if(!error){
     if(loading){
       return <Text>fetching Users... </Text>
     }else {
-      const responseData = search.edges
+      const responseData = fromFav ? favList : search.edges
+      console.log('the user data is',responseData)
       return (
         <FlatList
           data={responseData}
