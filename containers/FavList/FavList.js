@@ -6,6 +6,7 @@ import {
 import { withNavigationFocus } from "react-navigation";
 import { getItem } from '@utils/localDB'
 import { PROFILE_DETAILS_SCREEN } from '@constants/Screens'
+import { EMPTY_LIST_TITLE, FAVORITE_EMPTY_LIST_SUBTITLE } from '@constants/Text'
 import FavListComponent from '@components/UserList'
 import styles from './style'
 
@@ -60,7 +61,7 @@ class FavList extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <FavListComponent data={this.getFakeObj()} navigate={this.goToProfileDetails}  />
+                <FavListComponent data={this.getFakeObj()} navigate={this.goToProfileDetails} emptyTitle={EMPTY_LIST_TITLE} emptySubTitle={FAVORITE_EMPTY_LIST_SUBTITLE}  />
             </View>
         )
     }

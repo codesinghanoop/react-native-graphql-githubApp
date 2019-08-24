@@ -8,7 +8,7 @@ import queries from '@config/githubGraphQueries.queries'
 import SearchInput from '@components/SearchInput'
 import UserList from '@components/UserList'
 import { PROFILE_DETAILS_SCREEN } from '@constants/Screens'
-import { PLACEHOLDER } from '@constants/Text'
+import { PLACEHOLDER, EMPTY_LIST_TITLE, DISCOVER_EMPTY_LIST_SUBTITLE } from '@constants/Text'
 
 import styles from './style'
 
@@ -41,7 +41,7 @@ class ProfileList extends Component {
         return (
             <View style={styles.container}>
                 <SearchInput style={styles.input} onChangeText={this.searchQuery} placeholder={PLACEHOLDER} />
-                {searchTerm ? <UserListFrag searchQuery={searchTerm} navigate={this.goToProfileDetails}  /> : null}
+                {searchTerm ? <UserListFrag searchQuery={searchTerm} navigate={this.goToProfileDetails} emptyTitle={EMPTY_LIST_TITLE} emptySubTitle={DISCOVER_EMPTY_LIST_SUBTITLE}  /> : null}
             </View>
         )
     }

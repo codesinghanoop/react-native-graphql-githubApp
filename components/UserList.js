@@ -6,7 +6,9 @@ import EmptyComponent from './EmptyComponent'
 const UserList = ({
     data: { loading, error, search, networkStatus, refetch, fromFav, favList },
     navigate,
-    searchQuery
+    searchQuery,
+    emptyTitle,
+    emptySubTitle
 }) => {
   if(!error){
     if(loading){
@@ -24,7 +26,7 @@ const UserList = ({
           renderItem={({item, index}) =>(
             <UserListItem key={item.node.id} item={item} navigate={navigate} />
           )}
-          ListEmptyComponent={<EmptyComponent title='No Results' subTitle='Start adding favorites from user list tab' />}
+          ListEmptyComponent={<EmptyComponent title={emptyTitle} subTitle={emptySubTitle} />}
         />
       )
     }

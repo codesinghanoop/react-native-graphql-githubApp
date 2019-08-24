@@ -17,14 +17,14 @@ const MainStack = createBottomTabNavigator(
       screen: ProfileList,
       navigationOptions: {
         tabBarIcon: Icon(USER_SEARCH_ICON, Colors.primary),
-        title: 'User List',
+        title: 'Discover',
       },
     },
     FavList: {
       screen: FavList,
       navigationOptions: {
         tabBarIcon: Icon(LIST_ICON, Colors.primary),
-        title: 'Favorite List',
+        title: 'Favorites',
       },
     },
   },
