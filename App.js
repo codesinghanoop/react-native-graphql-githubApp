@@ -78,7 +78,9 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={this.createClient()}>
+        <SafeAreaView style={{ flex: 1 }}>
           <AppNavigator />
+        </SafeAreaView>
       </ApolloProvider>
     );
   }

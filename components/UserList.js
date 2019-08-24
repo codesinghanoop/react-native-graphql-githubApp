@@ -10,6 +10,7 @@ const UserList = ({
     emptyTitle,
     emptySubTitle
 }) => {
+  console.log('the props of data are', loading, error, search)
   if(!error){
     if(loading){
       return <Text>fetching Users... </Text>
@@ -31,6 +32,10 @@ const UserList = ({
       )
     }
   }else return <Text> Error Fetching users</Text>
+}
+
+UserList.defaultProps = {
+
 }
 
 export default UserList
