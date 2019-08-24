@@ -3,11 +3,13 @@ import React from 'react'
 import { createAppContainer, createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 // import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
-import tabBarIcon from '@components/Icon';
+import Icon from '@components/Icon';
 import ProfileList from '@scene/ProfileList';
 import FavList from '@scene/FavList';
 import Login from '@scene/Login'
 import ProfileDetails from '@scene/ProfileList/ProfileDetails'
+import { USER_SEARCH_ICON, LIST_ICON } from '@constants/Icon'
+import Colors from '@themes/Colors'
 
 const UserListStack = createStackNavigator(
   {
@@ -32,14 +34,14 @@ const MainStack = createBottomTabNavigator(
     UserList: {
       screen: UserListStack,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('home'),
+        tabBarIcon: Icon(USER_SEARCH_ICON, Colors.primary),
         title: 'User List',
       },
     },
     FavList: {
       screen: FavList,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('show-chart'),
+        tabBarIcon: Icon(LIST_ICON, Colors.primary),
         title: 'Favorite List',
       },
     },

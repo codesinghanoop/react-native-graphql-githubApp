@@ -15,6 +15,7 @@ const UserList = ({
       console.log('the user data is',responseData)
       return (
         <FlatList
+          style={{ marginBottom: 8 }}
           data={responseData}
           refreshing={networkStatus === 4}
           onRefresh={() => refetch()}

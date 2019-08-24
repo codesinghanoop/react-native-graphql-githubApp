@@ -10,14 +10,18 @@ import { APP_NAME, LOGIN_BUTTON, SIGNUP_BUTTON } from '@constants/Text'
 import { PROFILE_LIST_SCREEN } from '@constants/Screens'
 import Button from '@components/Button'
 import queries from '@config/githubGraphQueries.queries'
-import { setItem, getItem } from '@utils/localDB'
+import { setItem, checkExist, getItem, unsetFav, findIndex } from '@utils/localDB'
+import { USER_FAVORITE, USER_UN_FAVORITE } from '@constants/Icon'
 import styles from './style'
 
 
 class ProfileDetails extends Component {
 
-    navigateToSearch = () => {
-        this.props.navigation.navigate(PROFILE_LIST_SCREEN)
+    constructor(props) {
+        super(props);
+        this.state = {
+            favIds: []
+        };
     }
 
     getDetailsSection = (detailType, detailValue) => {
@@ -61,18 +65,37 @@ class ProfileDetails extends Component {
         } else return <Text>Error Fetching Repositories</Text>
     }
 
-    addToLocal = async (userData) => {
-        await setItem(userData);
+    addToLocal = async (node) => {
+        const { favIds } = this.state
+        await setItem(node, 'favList');
+        if(checkExist(favIds, node.node.id)) {
+            await unsetFav(node.node.id, 'favIds')
+            const index = findIndex(favIds, node.node.id)
+            favIds.splice(index, 1)
+        } else {
+            await setItem(node.node.id, 'favIds');
+            favIds.push(node.node.id)
+        }
+        this.setState({
+            favIds
+        })
+    }
+
+    async componentDidMount() {
+        this.setState({
+            favIds: await getItem('favIds') || []
+        })
     }
 
     render() {
         const { navigation: { state: { params: { userData } } }, data } = this.props
-        const { avatarUrl, email, location, name, login, PinnedItems } = userData
+        const { avatarUrl, email, location, name, login, PinnedItems, id } = userData
+        const { favIds } = this.state
         return (
             <View style={styles.profileContainer}>
               <ScrollView>
                 <Image style={styles.coverPic} source={{ uri: avatarUrl }} />
-                <Button onPress={() => this.addToLocal({node: userData})} style={styles.button} text={'FAV'} />
+                <Button onPress={() => this.addToLocal({node: userData})} style={styles.button} text={'FAV'} iconConfig={{ icon: checkExist(favIds, id) ? USER_FAVORITE : USER_UN_FAVORITE, show: true }} />
                 <View style={styles.detailsContainer}>
                     {this.getDetailsSection('Name', name)}
                     {this.getDetailsSection('Email', email)}

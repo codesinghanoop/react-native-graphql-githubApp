@@ -4,7 +4,7 @@ import * as React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { StyleSheet } from 'react-native';
 
-const tabBarIcon = (name) => ({ tintColor }) => (
+const Icon = (name, tintColor) => (
   <MaterialIcons style={styles.icon} name={name} color={tintColor} size={24} />
 );
 
@@ -14,4 +14,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default tabBarIcon;
+export default Icon;

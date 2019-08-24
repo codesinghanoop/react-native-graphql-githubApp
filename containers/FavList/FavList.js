@@ -3,6 +3,7 @@ import {
     View,
     Text
 } from 'react-native'
+import { withNavigationFocus } from "react-navigation";
 import { getItem } from '@utils/localDB'
 import FavListComponent from '@components/UserList'
 import styles from './style'
@@ -17,15 +18,22 @@ class FavList extends Component {
     }
 
     async componentDidMount() {
-        console.log('the list is====>>>', JSON.parse(await getItem()))
+        console.log('the list is',await getItem('favList'))
         this.setState({
-            favList: JSON.parse(await getItem())
+            favList: await getItem('favList')
         })
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.isFocused !== this.props.isFocused) {
+
+          this.refreshList()
+        }
     }
 
     refreshList = async () => {
         this.setState({
-            favList: JSON.parse(await getItem())
+            favList: await getItem('favList')
         })
     }
 
@@ -49,4 +57,4 @@ class FavList extends Component {
     }
 }
 
-export default FavList
+export default withNavigationFocus(FavList)

@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     button: {
         ...GlobalStyle.button,
         marginTop: Metrices.doubleBaseMargin,
-        textAlign: 'center'
+        textAlign: 'center',
+        alignSelf: 'center'
     }
 })
 
