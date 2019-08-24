@@ -21,7 +21,7 @@ const UserList = ({
           onEndReachedThreshold={0.5}
           keyExtractor = {(item) => item.id}
           renderItem={({item, index}) =>(
-            <UserListItem key={item.id} item={item} navigate={navigate} />
+            <UserListItem key={item.node.id} item={item} navigate={navigate} />
           )
           }
         />

@@ -7,7 +7,7 @@ import { graphql } from 'react-apollo';
 import queries from '@config/githubGraphQueries.queries'
 import SearchInput from '@components/SearchInput'
 import UserList from '@components/UserList'
-import { FAV_LIST_SCREEN } from '@constants/Screens'
+import { PROFILE_DETAILS_SCREEN } from '@constants/Screens'
 
 import styles from './style'
 
@@ -20,24 +20,27 @@ class ProfileList extends Component {
         }
     }
 
+    static navigationOptions = {
+        header: null
+    }
+
     searchQuery = (text) => {
         this.setState({
             searchTerm: text
         })
     }
 
-    goToProfileDetails = () => {
+    goToProfileDetails = (userData) => {
         const { navigation: { navigate } } = this.props
-        navigate(FAV_LIST_SCREEN)
+        navigate(PROFILE_DETAILS_SCREEN, { userData })
     }
 
     render() {
-        const { data, navigation: { navigate } } = this.props
         const { searchTerm } = this.state
         return (
             <View style={styles.container}>
                 <SearchInput onChangeText={this.searchQuery} />
-                <UserListFrag searchQuery={searchTerm} />
+                <UserListFrag searchQuery={searchTerm} navigate={this.goToProfileDetails}  />
             </View>
         )
     }
