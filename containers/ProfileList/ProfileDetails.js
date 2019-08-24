@@ -112,7 +112,7 @@ class ProfileDetails extends Component {
 export default graphql(
     queries.pinnedRepos,
     {
-      options: ({ searchQuery }) => ({ variables: { query: "codesinghanoop" } }), // compute query variable from prop
+      options: (props) => ({ variables: { query: props.navigation.state.params.userData.login } }), // compute query variable from prop
       notifyOnNetworkStatusChange: true
     }
 )(ProfileDetails)

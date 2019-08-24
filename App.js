@@ -27,16 +27,24 @@ import {
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
-import { createHttpLink } from 'apollo-link-http'
+import { HttpLink } from 'apollo-link-http'
 import { onError } from 'apollo-link-error';
 import { ApolloLink, concat } from 'apollo-link';
+import DebounceLink from 'apollo-link-debounce';
 // import apolloLogger from 'apollo-link-logger';
 import AppNavigator from '@router/AppNavigation';
+import { BASE_URL } from '@constants/endpoints'
+
+const DEFAULT_DEBOUNCE_TIMEOUT = 100;
 
 class App extends Component {
   createClient() {
-    const httpLink = createHttpLink({ uri: 'https://api.github.com/graphql'})
+    // const httpLink = createHttpLink({ uri: BASE_URL})
 
+    const httpLink = ApolloLink.from([
+      new DebounceLink(DEFAULT_DEBOUNCE_TIMEOUT),
+      new HttpLink({ uri: BASE_URL }),
+    ]);
     // handle network error
     const errorLink = onError(({ networkError }) => {
         if (networkError.statusCode === 401) {
@@ -50,7 +58,7 @@ class App extends Component {
     let middlewareLink =  new ApolloLink((operation, forward) => {
       operation.setContext({
         headers: {
-        authorization : 'Bearer GITHUB_KEY'
+        authorization : 'Bearer 1e4151c849d9b104144d43a2659408c227d0dbe9'
         }
       })
       return forward(operation)
