@@ -8,6 +8,7 @@ import queries from '@config/githubGraphQueries.queries'
 import SearchInput from '@components/SearchInput'
 import UserList from '@components/UserList'
 import { PROFILE_DETAILS_SCREEN } from '@constants/Screens'
+import { PLACEHOLDER } from '@constants/Text'
 
 import styles from './style'
 
@@ -39,8 +40,8 @@ class ProfileList extends Component {
         const { searchTerm } = this.state
         return (
             <View style={styles.container}>
-                <SearchInput onChangeText={this.searchQuery} />
-                <UserListFrag searchQuery={searchTerm} navigate={this.goToProfileDetails}  />
+                <SearchInput style={styles.input} onChangeText={this.searchQuery} placeholder={PLACEHOLDER} />
+                {searchTerm ? <UserListFrag searchQuery={searchTerm} navigate={this.goToProfileDetails}  /> : null}
             </View>
         )
     }

@@ -69,6 +69,7 @@ class ProfileDetails extends Component {
         const { favIds } = this.state
         await setItem(node, 'favList');
         if(checkExist(favIds, node.node.id)) {
+            console.log('the list is',favIds,node.node.id)
             await unsetFav(node.node.id, 'favIds')
             const index = findIndex(favIds, node.node.id)
             favIds.splice(index, 1)

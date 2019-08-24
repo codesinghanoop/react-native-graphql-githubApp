@@ -5,6 +5,7 @@ import {
 import Metrices from '@themes/Metrices'
 import Fonts from '@themes/Fonts'
 import GlobalStyle from '@themes/globalStyle'
+import Colors from '@themes/Colors'
 
 const styles = StyleSheet.create({
     container: {
@@ -53,6 +54,16 @@ const styles = StyleSheet.create({
         marginTop: Metrices.doubleBaseMargin,
         textAlign: 'center',
         alignSelf: 'center'
+    },
+    input: {
+        width: '90%',
+        height: 40,
+        borderRadius: 30,
+        borderColor: Colors.primary,
+        borderWidth: 2,
+        marginTop: Metrices.doubleBaseMargin,
+        alignSelf: 'center',
+        padding: Metrices.baseMargin
     }
 })
 

@@ -23,14 +23,13 @@ class FavList extends Component {
     }
 
     async componentDidMount() {
-        console.log('the list is',await getItem('favList'))
         this.setState({
             favList: await getItem('favList')
         })
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.isFocused !== this.props.isFocused) {
+        if (prevProps.isFocused !== this.props.isFocused && this.props.isFocused) {
 
           this.refreshList()
         }
