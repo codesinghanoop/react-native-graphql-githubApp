@@ -10,7 +10,6 @@ const UserList = ({
     emptyTitle,
     emptySubTitle
 }) => {
-  console.log('the props of data are', loading, error, search)
   if(!error){
     if(loading){
       return <Text>fetching Users... </Text>

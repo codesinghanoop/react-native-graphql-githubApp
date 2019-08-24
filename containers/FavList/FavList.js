@@ -36,7 +36,6 @@ class FavList extends Component {
     }
 
     refreshList = async () => {
-        console.log('the list =======', await getItem('favList'))
         this.setState({
             favList: await getItem('favList')
         })

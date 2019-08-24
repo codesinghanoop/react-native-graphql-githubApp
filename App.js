@@ -33,14 +33,12 @@ import { ApolloLink, concat } from 'apollo-link';
 import DebounceLink from 'apollo-link-debounce';
 // import apolloLogger from 'apollo-link-logger';
 import AppNavigator from '@router/AppNavigation';
-import { BASE_URL } from '@constants/endpoints'
+import { BASE_URL, GITHUB_TOKEN } from '@constants/endpoints'
 
 const DEFAULT_DEBOUNCE_TIMEOUT = 100;
 
 class App extends Component {
   createClient() {
-    // const httpLink = createHttpLink({ uri: BASE_URL})
-
     const httpLink = ApolloLink.from([
       new DebounceLink(DEFAULT_DEBOUNCE_TIMEOUT),
       new HttpLink({ uri: BASE_URL }),
@@ -58,7 +56,7 @@ class App extends Component {
     let middlewareLink =  new ApolloLink((operation, forward) => {
       operation.setContext({
         headers: {
-        authorization : 'Bearer 1e4151c849d9b104144d43a2659408c227d0dbe9'
+        authorization : `Bearer ${GITHUB_TOKEN}`
         }
       })
       return forward(operation)
