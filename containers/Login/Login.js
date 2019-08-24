@@ -15,6 +15,10 @@ class Login extends Component {
         this.props.navigation.navigate(PROFILE_LIST_SCREEN)
     }
 
+    static navigationOptions = {
+        header: null
+    }
+
     render() {
         return (
             <View style={styles.container}>

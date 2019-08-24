@@ -31,8 +31,8 @@ const UserListStack = createStackNavigator(
 
 const MainStack = createBottomTabNavigator(
   {
-    UserList: {
-      screen: UserListStack,
+    ProfileList: {
+      screen: ProfileList,
       navigationOptions: {
         tabBarIcon: Icon(USER_SEARCH_ICON, Colors.primary),
         title: 'User List',
@@ -47,7 +47,7 @@ const MainStack = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'UserList',
+    initialRouteName: 'ProfileList',
     shifting: false,
     keyboardHidesNavigationBar: false,
   }
@@ -67,10 +67,13 @@ export default createAppContainer(
       Login: {
         screen: Login,
       },
+      ProfileDetails: {
+        screen: ProfileDetails,
+      },
     },
     {
       initialRouteName: 'Login',
-      headerMode: 'none',
+      headerMode: 'screen',
       mode: 'modal',
       defaultNavigationOptions: {
         gesturesEnabled: false,
