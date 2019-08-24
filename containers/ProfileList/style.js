@@ -4,6 +4,7 @@ import {
 } from 'react-native'
 import Metrices from '@themes/Metrices'
 import Fonts from '@themes/Fonts'
+import GlobalStyle from '@themes/globalStyle'
 
 const styles = StyleSheet.create({
     container: {
@@ -15,7 +16,8 @@ const styles = StyleSheet.create({
     coverPic: {
         resizeMode: 'cover',
         width: '100%',
-        height: 120
+        height: 200,
+        marginTop: Metrices.baseMargin
     },
     detailsSection: {
         flexDirection: 'row',
@@ -45,6 +47,11 @@ const styles = StyleSheet.create({
     },
     repoDetails: {
         flexDirection: 'row',
+    },
+    button: {
+        ...GlobalStyle.button,
+        marginTop: Metrices.doubleBaseMargin,
+        textAlign: 'center'
     }
 })
 

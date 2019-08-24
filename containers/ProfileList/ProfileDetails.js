@@ -10,6 +10,7 @@ import { APP_NAME, LOGIN_BUTTON, SIGNUP_BUTTON } from '@constants/Text'
 import { PROFILE_LIST_SCREEN } from '@constants/Screens'
 import Button from '@components/Button'
 import queries from '@config/githubGraphQueries.queries'
+import { setItem, getItem } from '@utils/localDB'
 import styles from './style'
 
 
@@ -44,7 +45,6 @@ class ProfileDetails extends Component {
     }
 
     getRepoDetails = ({ error, loading, user }) => {
-        console.log('the user repos are',user)
         if(!error){
             if(loading){
               return <Text>fetching Users... </Text>
@@ -61,6 +61,10 @@ class ProfileDetails extends Component {
         } else return <Text>Error Fetching Repositories</Text>
     }
 
+    addToLocal = async (userData) => {
+        await setItem(userData);
+    }
+
     render() {
         const { navigation: { state: { params: { userData } } }, data } = this.props
         const { avatarUrl, email, location, name, login, PinnedItems } = userData
@@ -68,6 +72,7 @@ class ProfileDetails extends Component {
             <View style={styles.profileContainer}>
               <ScrollView>
                 <Image style={styles.coverPic} source={{ uri: avatarUrl }} />
+                <Button onPress={() => this.addToLocal(userData)} style={styles.button} text={'FAV'} />
                 <View style={styles.detailsContainer}>
                     {this.getDetailsSection('Name', name)}
                     {this.getDetailsSection('Email', email)}
