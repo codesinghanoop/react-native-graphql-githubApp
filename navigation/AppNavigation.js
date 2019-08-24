@@ -11,24 +11,6 @@ import ProfileDetails from '@scene/ProfileList/ProfileDetails'
 import { USER_SEARCH_ICON, LIST_ICON } from '@constants/Icon'
 import Colors from '@themes/Colors'
 
-const UserListStack = createStackNavigator(
-  {
-    ProfileList: {
-      screen: ProfileList,
-    },
-    ProfileDetails: {
-      screen: ProfileDetails,
-    },
-  },
-  {
-    initialRouteName: 'ProfileList',
-    mode: 'modal',
-    defaultNavigationOptions: {
-      gesturesEnabled: false,
-    },
-  }
-)
-
 const MainStack = createBottomTabNavigator(
   {
     ProfileList: {
