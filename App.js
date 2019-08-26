@@ -34,6 +34,7 @@ import DebounceLink from 'apollo-link-debounce';
 // import apolloLogger from 'apollo-link-logger';
 import AppNavigator from '@router/AppNavigation';
 import { BASE_URL, GITHUB_TOKEN } from '@constants/endpoints'
+import FragmentMatcher from '@config/fragmentMatcher'
 
 const DEFAULT_DEBOUNCE_TIMEOUT = 100;
 
@@ -69,8 +70,9 @@ class App extends Component {
     link: link,
     cache: new InMemoryCache({
       dataIdFromObject: o => o.id,
+      fragmentMatcher: FragmentMatcher
     }),
-    connectToDevTools: true
+    connectToDevTools: true,
     })
   }
   render() {
